@@ -28,11 +28,14 @@ All traffic     private-subnet-cidr/24
 ami-004d038b7950c224c
 (N.Virginia)
 
+
+ami-003ba08113592046f
+   (oregon)
 -----*** Update the server ***-----
 $ sudo apt-get update && sudo apt-get dist-upgrade -y
 
 -----*** Disable transparent huge pages ***-----
-$ sudo nano /etc/rc.local
+sudo nano /etc/rc.local
 ## Add these lines:
 
 if test -f /sys/kernel/mm/transparent_hugepage/enabled; then
@@ -65,10 +68,10 @@ echo 'vm.swappiness=1' | sudo tee --append /etc/sysctl.conf
 -----*** Setting root reserved space ***-----
 
 $ sudo lsblk
-$ sudo tune2fs -l /dev/nvme0n1p1
-$ sudo tune2fs -l /dev/nvme0n1p1 | egrep "Block count|Reserved block count" 
-$ sudo tune2fs -m 1 /dev/nvme0n1p1
-$ sudo tune2fs -l /dev/nvme0n1p1 | egrep "Block count|Reserved block count" 
+$ sudo tune2fs -l /dev/xvda1
+$ sudo tune2fs -l /dev/xvda1 | egrep "Block count|Reserved block count" 
+$ sudo tune2fs -m 1 /dev/xvda1
+$ sudo tune2fs -l /dev/xvda1 | egrep "Block count|Reserved block count" 
 
 
 ### Note : Now, save the instance to an image, call it “Cloudera Manager” Make sure to 
