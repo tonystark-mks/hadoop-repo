@@ -68,10 +68,10 @@ echo 'vm.swappiness=1' | sudo tee --append /etc/sysctl.conf
 -----*** Setting root reserved space ***-----
 
 $ sudo lsblk
-$ sudo tune2fs -l /dev/xvda1
-$ sudo tune2fs -l /dev/xvda1 | egrep "Block count|Reserved block count" 
-$ sudo tune2fs -m 1 /dev/xvda1
-$ sudo tune2fs -l /dev/xvda1 | egrep "Block count|Reserved block count" 
+$ sudo tune2fs -l /dev/nvme0n1p1
+$ sudo tune2fs -l /dev/nvme0n1p1 | egrep "Block count|Reserved block count" 
+$ sudo tune2fs -m 1 /dev/nvme0n1p1
+$ sudo tune2fs -l /dev/nvme0n1p1 | egrep "Block count|Reserved block count" 
 
 
 ### Note : Now, save the instance to an image, call it “Cloudera Manager” Make sure to 
@@ -293,6 +293,8 @@ aws s3 cp s3://cm6repo/CDH-6.3.3-1.cdh6.3.3.p0.1796617-xenial.parcel.sha ~
 aws s3 cp s3://cm6repo/cm6.3.3-ubuntu1604.tar.gz ~
 aws s3 cp s3://cm6repo/manifest.json ~
 ls
+
+
 
 sudo tar xvfz cm6.3.3-ubuntu1604.tar.gz -C /var/www/html/cloudera-repos/cm6 --strip-components=1
 
