@@ -33,6 +33,15 @@ ami-003ba08113592046f
    (oregon)
 -----*** Update the server ***-----
 $ sudo apt-get update && sudo apt-get dist-upgrade -y
+##Disable IPV6 ###
+$sudo nano /etc/sysctl.conf
+
+##Disable Firewall IPtable##
+$sudo iptables -L -n 
+$ Sudo ufw disable
+
+##Disable SE Linux = $ sudo setenforce 0
+
 
 -----*** Disable transparent huge pages ***-----
 sudo nano /etc/rc.local
